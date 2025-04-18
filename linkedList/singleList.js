@@ -10,18 +10,7 @@ class SinglyLinkedList{
         this.head = null;
     }
 
-    addFirst(data){
-        const newNode = new Node(data);
-
-        if(this.head == null) {
-            this.head = newNode;
-            return;
-        }
-        newNode.next = this.head;
-        this.head = newNode;
-    }
-
-    insertAtLast(data){
+    insert(data){
         const newNode = new Node(data);
 
         if(this.head == null) {
@@ -33,29 +22,42 @@ class SinglyLinkedList{
             current = current.next;
         }
         current.next = newNode;
-        
     }
 
     insertAfterKey(key , data){
         const newNode = new Node(data);
         let current  = this.head;
+
+        if (!this.head) return;
+
         while(current !== null && current.data != key){
             current = current.next;
         }
+
+        if (!current) return;
         newNode.next = current.next;
         current.next = newNode
+
     }
 
     delete(data){
         let current = this.head;
-        // let prev = null;
-        while(current.next.data != data){
-            // prev = current;
+        let prev = null;
+
+        if(current.data == data){
+            this.head = current.next;
+            return;
+        }
+
+        while(current && current.data != data){
+            prev = current;
             current = current.next;
         }
 
-        
-
+        if(!current){
+            return
+        }
+        prev.next = current.next;
     }
 
     traverse(){
@@ -71,10 +73,11 @@ class SinglyLinkedList{
 
 const ll  = new SinglyLinkedList();
 
-ll.addFirst(0);
-// ll.insertAtLast();
-ll.insertAtLast(2);
-ll.insertAtLast(4);
-ll.insertAtLast(5);
-ll.insertAfterKey(0, 1)
+ll.insert(0);
+ll.insert(1);
+ll.insert(2);
+ll.insert(3);
+ll.insert(4);
+ll.insert(5);
+ll.delete(0)
 ll.traverse();
