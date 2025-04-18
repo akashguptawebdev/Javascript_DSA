@@ -1,3 +1,5 @@
+// Notion link for stack Implimentaion :- https://www.notion.so/Stack-1d971281bce9806a9e5cc9df2e165d38
+
 class stack {
     constructor(){
         this.stack = [];
